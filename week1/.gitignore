@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+outputs/raw/*
+outputs/processed/*
+outputs/charts/*
+!outputs/raw/.gitkeep
+!outputs/processed/.gitkeep
+!outputs/charts/.gitkeep
+.cache/

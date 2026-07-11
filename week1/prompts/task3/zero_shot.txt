@@ -1,0 +1,4 @@
+Draft a professional first-pass reply to this customer complaint. Acknowledge the issue and propose next steps. Keep it to 3-4 sentences. Reply in the same language as the complaint.
+
+Complaint:
+{input_text}

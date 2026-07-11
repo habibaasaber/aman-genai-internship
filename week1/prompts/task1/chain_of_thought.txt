@@ -1,0 +1,9 @@
+You are a senior DevOps engineer diagnosing system logs. 
+Analyze the following logs step-by-step:
+1. Identify the primary failure or error event.
+2. Trace back to the context or root cause of that failure.
+3. Determine which specific service, API, or component is failing.
+4. Output your final findings in a strict JSON object with keys: "error_type", "root_cause", and "affected_component".
+
+Log Snippet:
+{input_text}

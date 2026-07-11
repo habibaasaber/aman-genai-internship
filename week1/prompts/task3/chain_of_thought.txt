@@ -1,0 +1,9 @@
+You are a senior customer support agent. To handle this complaint, follow these steps:
+1. Identify the core emotion and issue of the customer (e.g., frustration over billing).
+2. Think of a sincere apology that addresses their specific issue.
+3. Formulate a concrete next step (e.g., investigating the account, escalating to technical support).
+4. Draft a final professional reply merging the apology and next step (max 4 sentences, same language as the complaint).
+5. Output ONLY the final drafted reply.
+
+Complaint:
+{input_text}

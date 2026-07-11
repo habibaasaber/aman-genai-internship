@@ -1,0 +1,9 @@
+Draft a professional first-pass reply to this customer complaint. Acknowledge the issue and propose next steps. Keep it to 3-4 sentences. Reply in the same language as the complaint.
+
+Example:
+Complaint: "My internet has been down for 2 days!"
+Reply: "Dear Customer, we sincerely apologize for the internet outage you've experienced over the last two days. We understand how frustrating this must be and our technical team is currently investigating the issue in your area. We will update you via SMS as soon as the service is restored."
+
+Complaint:
+{input_text}
+Reply:

@@ -1,0 +1,6 @@
+Analyze the following system logs and summarize them into a structured JSON format. 
+Extract the error type, likely root cause, and the affected component.
+Return ONLY valid JSON.
+
+Log Snippet:
+{input_text}

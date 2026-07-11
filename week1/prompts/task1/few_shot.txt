@@ -1,0 +1,12 @@
+Analyze the following system logs and summarize them into a JSON format containing:
+- error_type: (string)
+- root_cause: (string)
+- affected_component: (string)
+
+Here is an example:
+Log: "[error] db_service - Connection pool exhausted. max_connections=100"
+Output: {{"error_type": "Connection Exhaustion", "root_cause": "Max connections reached (100)", "affected_component": "db_service"}}
+
+Log Snippet:
+{input_text}
+Output:

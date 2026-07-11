@@ -1,0 +1,10 @@
+openai
+google-generativeai
+python-dotenv
+pandas
+matplotlib
+pyyaml
+tiktoken
+pydantic
+jupyter
+openpyxl
