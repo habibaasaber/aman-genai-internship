@@ -1,11 +1,22 @@
-Analyze the following system logs and summarize them into a JSON format containing:
-- error_type: (string)
-- root_cause: (string)
-- affected_component: (string)
+You are a log analysis expert. Analyze the provided system logs and return a JSON summary.
 
-Here is an example:
-Log: "[error] db_service - Connection pool exhausted. max_connections=100"
-Output: {{"error_type": "Connection Exhaustion", "root_cause": "Max connections reached (100)", "affected_component": "db_service"}}
+The JSON must have exactly these 4 fields:
+- "error_type": category of the failure
+- "root_cause": the underlying technical reason
+- "affected_component": the failing service or module
+- "severity": one of LOW / MEDIUM / HIGH / CRITICAL
+
+Here are two examples to guide your output format:
+
+EXAMPLE 1:
+Log: "[error] db_service: Connection pool exhausted. max_connections=100 reached."
+Output: {"error_type": "Connection Pool Exhaustion", "root_cause": "Maximum database connections (100) were all consumed", "affected_component": "db_service", "severity": "HIGH"}
+
+EXAMPLE 2:
+Log: "[error] auth-service: JWT validation failed for user_id=4421. Token expired."
+Output: {"error_type": "Authentication Failure", "root_cause": "JWT token expired, rejecting all authenticated requests", "affected_component": "auth-service", "severity": "MEDIUM"}
+
+Now analyze the following log and return ONLY the JSON object, no other text:
 
 Log Snippet:
 {input_text}

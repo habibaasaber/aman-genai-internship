@@ -1,5 +1,5 @@
 openai
-google-generativeai
+google-genai
 python-dotenv
 pandas
 matplotlib
@@ -8,3 +8,4 @@ tiktoken
 pydantic
 jupyter
 openpyxl
+tabulate

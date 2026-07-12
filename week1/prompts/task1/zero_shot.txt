@@ -1,6 +1,12 @@
-Analyze the following system logs and summarize them into a structured JSON format. 
-Extract the error type, likely root cause, and the affected component.
-Return ONLY valid JSON.
+You are a log analysis expert. Analyze the following system logs and produce a structured 4-field JSON summary.
+
+Return ONLY a valid JSON object with exactly these keys:
+- "error_type": The category/type of error (e.g. "Connection Timeout", "OutOfMemoryError", "Rate Limit Exceeded")
+- "root_cause": A concise explanation of why this error occurred
+- "affected_component": The specific service, server, or module that failed
+- "severity": One of "LOW", "MEDIUM", "HIGH", or "CRITICAL"
+
+Do NOT include any explanation, markdown, or text outside the JSON.
 
 Log Snippet:
 {input_text}
