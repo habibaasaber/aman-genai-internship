@@ -1,0 +1,10 @@
+.idea/
+.chainlit/
+chainlit.md
+week1/.chainlit/
+week1/src/.chainlit/
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.cache/

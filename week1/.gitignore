@@ -9,3 +9,4 @@ outputs/charts/*
 !outputs/processed/.gitkeep
 !outputs/charts/.gitkeep
 .cache/
+.venv

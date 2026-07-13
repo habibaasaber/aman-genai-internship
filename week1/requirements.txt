@@ -9,3 +9,7 @@ pydantic
 jupyter
 openpyxl
 tabulate
+chainlit
+langfuse
+langchain-openai
+

@@ -1,16 +1,15 @@
 import json
-import os
 import re
 import time
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Dict, List
 
 import pandas as pd
 import yaml
 
 from src.evaluation.metrics import calculate_cost, count_tokens_fallback, validate_json_output
-from src.models.gemini_client import GeminiClient
-from src.models.openai_client import OpenAIClient
+from src.models.gemini_client import generate_gemini
+from src.models.openai_client import generate_openai
 from src.utils.cache import ResponseCache
 from src.utils.logger import get_logger
 
@@ -31,25 +30,6 @@ class Evaluator:
         self.project_root = config_path.parent.parent
         self.cache_dir = self.project_root / self.config.get("execution", {}).get("cache_dir", ".cache")
         self.cache = ResponseCache(str(self.cache_dir))
-        self.clients = self._initialize_clients()
-
-    def _initialize_clients(self) -> Dict[str, Any]:
-        """Initializes all LLM clients specified in config."""
-        clients = {}
-        for model_key, model_config in self.config["models"].items():
-            provider = model_config["provider"]
-            model_name = model_config["model_name"]
-            temp = model_config["temperature"]
-            max_tokens = model_config["max_tokens"]
-
-            if provider == "openai":
-                clients[model_key] = OpenAIClient(model_name, temp, max_tokens)
-            elif provider == "gemini":
-                clients[model_key] = GeminiClient(model_name, temp, max_tokens)
-            else:
-                logger.warning(f"Unknown provider {provider} for model {model_key}")
-
-        return clients
 
     def load_prompt_template(self, task: str, strategy: str) -> str:
         """Loads a prompt template from disk."""
@@ -144,14 +124,17 @@ class Evaluator:
                 for input_idx, input_text in enumerate(task_inputs):
                     formatted_prompt = prompt_template.replace("{input_text}", input_text)
 
-                    for model_key, client in self.clients.items():
-                        model_config = self.config["models"][model_key]
+                    for model_key, model_config in self.config["models"].items():
+                        provider = model_config["provider"]
+                        model_name = model_config["model_name"]
+                        temp = model_config["temperature"]
+                        max_tokens = model_config["max_tokens"]
 
                         logger.info(f"Running: {task} | {strategy} | Input {input_idx + 1} | {model_key}")
 
                         cache_kwargs = {
-                            "model_name": client.model_name,
-                            "temperature": client.temperature,
+                            "model_name": model_name,
+                            "temperature": temp,
                             "prompt": formatted_prompt,
                         }
 
@@ -162,7 +145,17 @@ class Evaluator:
                             latency = cached_response["latency"]
                         else:
                             start_time = time.perf_counter()
-                            response_data = client.generate(formatted_prompt)
+                            if provider == "openai":
+                                response_data = generate_openai(model_name, temp, max_tokens, formatted_prompt)
+                            elif provider == "gemini":
+                                response_data = generate_gemini(model_name, temp, max_tokens, formatted_prompt)
+                            else:
+                                logger.warning(f"Unknown provider {provider} for model {model_key}")
+                                response_data = {
+                                    "content": f"Error: Unknown provider {provider}",
+                                    "prompt_tokens": None,
+                                    "completion_tokens": None,
+                                }
                             latency = time.perf_counter() - start_time
 
                             self.cache.set({
