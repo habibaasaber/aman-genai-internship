@@ -35,28 +35,34 @@ def generate_openai(model_name: str, temperature: float, max_tokens: int, prompt
         completion_tokens = usage.completion_tokens if usage else None
         total_tokens = usage.total_tokens if usage else None
 
-        # --- Langfuse tracing ---
+        # --- Langfuse tracing (SDK v4) ---
         if langfuse is not None:
             try:
-                trace = langfuse.trace(
-                    name="openai-generation",
-                    metadata={"provider": "openai"},
-                )
-                trace.generation(
+                # start_observation with as_type="generation" is the v4 API.
+                # .trace() no longer exists in Langfuse SDK v4.
+                usage_details = {}
+                if prompt_tokens is not None:
+                    usage_details["input"] = prompt_tokens
+                if completion_tokens is not None:
+                    usage_details["output"] = completion_tokens
+                if total_tokens is not None:
+                    usage_details["total"] = total_tokens
+
+                gen = langfuse.start_observation(
                     name="openai-chat-completion",
+                    as_type="generation",
                     model=model_name,
                     input=prompt,
-                    output=content,
                     metadata={
                         "provider": "openai",
                         "latency_ms": round(latency_ms, 2),
                     },
-                    usage={
-                        "input": prompt_tokens,
-                        "output": completion_tokens,
-                        "total": total_tokens,
-                    },
                 )
+                gen.update(
+                    output=content,
+                    usage_details=usage_details if usage_details else None,
+                )
+                gen.end()
                 langfuse.flush()
             except Exception as trace_exc:
                 logger.warning(f"Langfuse tracing failed (OpenAI): {trace_exc}")

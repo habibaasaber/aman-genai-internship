@@ -41,28 +41,34 @@ def generate_gemini(model_name: str, temperature: float, max_tokens: int, prompt
             completion_tokens = response.usage_metadata.candidates_token_count
             total_tokens = response.usage_metadata.total_token_count
 
-        # --- Langfuse tracing ---
+        # --- Langfuse tracing (SDK v4) ---
         if langfuse is not None:
             try:
-                trace = langfuse.trace(
-                    name="gemini-generation",
-                    metadata={"provider": "gemini"},
-                )
-                trace.generation(
+                # start_observation with as_type="generation" is the v4 API.
+                # .trace() no longer exists in Langfuse SDK v4.
+                usage_details = {}
+                if prompt_tokens is not None:
+                    usage_details["input"] = prompt_tokens
+                if completion_tokens is not None:
+                    usage_details["output"] = completion_tokens
+                if total_tokens is not None:
+                    usage_details["total"] = total_tokens
+
+                gen = langfuse.start_observation(
                     name="gemini-generate-content",
+                    as_type="generation",
                     model=model_name,
                     input=prompt,
-                    output=content,
                     metadata={
                         "provider": "gemini",
                         "latency_ms": round(latency_ms, 2),
                     },
-                    usage={
-                        "input": prompt_tokens,
-                        "output": completion_tokens,
-                        "total": total_tokens,
-                    },
                 )
+                gen.update(
+                    output=content,
+                    usage_details=usage_details if usage_details else None,
+                )
+                gen.end()
                 langfuse.flush()
             except Exception as trace_exc:
                 logger.warning(f"Langfuse tracing failed (Gemini): {trace_exc}")
