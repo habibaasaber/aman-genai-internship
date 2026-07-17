@@ -174,6 +174,8 @@ async def on_message(message: cl.Message):
             f"Prompt Tokens: {result_dict['prompt_tokens']}\n"
             f"Completion Tokens: {result_dict['completion_tokens']}\n"
             f"Total Tokens: {result_dict['total_tokens']}\n"
-            f"Estimated Cost: ${result_dict['estimated_cost_usd']:.6f}"
+            f"Estimated Cost: ${result_dict['estimated_cost_usd']:.6f}\n"
+            f"Accuracy Score: {result_dict['accuracy_score']}\n"
+            f"Valid JSON: {result_dict['valid_json'] if result_dict['valid_json'] is not None else 'N/A'}"
         )
     ).send()

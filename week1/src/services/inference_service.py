@@ -21,7 +21,8 @@ from dotenv import load_dotenv
 
 from src.models.openai_client import generate_openai
 from src.models.gemini_client import generate_gemini
-from src.evaluation.metrics import calculate_cost, count_tokens_fallback
+from src.evaluation.metrics import calculate_cost, count_tokens_fallback, validate_json_output
+from src.evaluation.evaluator import Evaluator
 
 # ---------------------------------------------------------------------------
 # Canonical key maps (UI label → internal key)
@@ -127,6 +128,11 @@ def run_inference(
         model_cfg["cost_per_1m_completion_tokens"],
     )
 
+    # Re-use evaluator to score accuracy and check JSON validity
+    evaluator = Evaluator()
+    accuracy_score = evaluator._score_output(task, content)
+    is_valid_json = validate_json_output(content) if task == "task1" else None
+
     return {
         "response": content,
         "latency_sec": round(latency_sec, 4),
@@ -134,4 +140,6 @@ def run_inference(
         "completion_tokens": completion_tokens,
         "total_tokens": total_tokens,
         "estimated_cost_usd": round(cost, 6),
+        "accuracy_score": round(accuracy_score, 3),
+        "valid_json": is_valid_json,
     }
