@@ -8,3 +8,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .cache/
+
+# Environment files — contain secret API keys, NEVER commit
+.env
+week2/.env

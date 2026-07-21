@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "language": "en",
+    "question": "What are the official working hours and working days for AMAN interns?",
+    "ground_truth": "The official working hours for AMAN interns are 9:00 AM to 5:00 PM, Sunday through Thursday."
+  },
+  {
+    "id": 2,
+    "language": "en",
+    "question": "What happens if an intern is repeatedly late without a valid excuse?",
+    "ground_truth": "If an intern is repeatedly late without a valid excuse, it negatively impacts the intern's final evaluation and hiring recommendation."
+  },
+  {
+    "id": 3,
+    "language": "en",
+    "question": "What is the official dress code at AMAN corporate offices?",
+    "ground_truth": "The official dress code at AMAN corporate offices is strictly smart casual."
+  },
+  {
+    "id": 4,
+    "language": "en",
+    "question": "What tools does Track 1 (AI & Data Engineering) use for agent orchestration and observability?",
+    "ground_truth": "Track 1 (AI & Data Engineering) uses LangChain/LangGraph for agent orchestration and Langfuse for observability."
+  },
+  {
+    "id": 5,
+    "language": "ar",
+    "question": "كم عدد أيام الغياب المسموح بها خلال فترة التدريب؟",
+    "ground_truth": "لا يجوز أن تتجاوز نسبة الغياب ثلاثة أيام طوال فترة التدريب."
+  },
+  {
+    "id": 6,
+    "language": "en",
+    "question": "When does the mid-term evaluation take place?",
+    "ground_truth": "The mid-term evaluation takes place at the end of the sixth week of training."
+  },
+  {
+    "id": 7,
+    "language": "en",
+    "question": "How long is the individual HR alignment session with each intern?",
+    "ground_truth": "The individual HR alignment session is fifteen minutes long, held privately with each intern."
+  },
+  {
+    "id": 8,
+    "language": "en",
+    "question": "What response time and code coverage standards must Track 2 APIs meet?",
+    "ground_truth": "Track 2 APIs must meet under 200ms response time and code coverage above 85 percent."
+  },
+  {
+    "id": 9,
+    "language": "en",
+    "question": "Where must penetration tests be conducted in Track 7 (Cyber Security & DevOps)?",
+    "ground_truth": "Penetration tests in Track 7 (Cyber Security & DevOps) must be conducted strictly inside isolated staging environments only."
+  }
+]

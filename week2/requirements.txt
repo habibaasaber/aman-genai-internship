@@ -1,0 +1,79 @@
+# =============================================================================
+# Week 2 — Production RAG: "Ask AMAN HR"
+# requirements.txt
+# =============================================================================
+# Install with:   pip install -r requirements.txt
+# Python version: 3.12+
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# PDF Parsing
+# ---------------------------------------------------------------------------
+pymupdf>=1.28.0                  # PyMuPDF — fast, bidi-safe PDF extraction
+
+# ---------------------------------------------------------------------------
+# Embeddings & Reranking  (local, CPU/GPU)
+# ---------------------------------------------------------------------------
+sentence-transformers>=3.3.0     # BAAI/bge-m3 + BAAI/bge-reranker-v2-m3
+torch>=2.3.0                     # Required backend for sentence-transformers
+transformers>=4.45.0             # HuggingFace model hub
+huggingface-hub>=0.25.0          # Model download utilities
+
+# ---------------------------------------------------------------------------
+# Vector Store
+# ---------------------------------------------------------------------------
+qdrant-client>=1.12.0            # Qdrant Python client (local Docker)
+
+# ---------------------------------------------------------------------------
+# Sparse Retrieval
+# ---------------------------------------------------------------------------
+rank-bm25>=0.2.2                 # BM25Okapi — pure-Python, no extra service
+
+# ---------------------------------------------------------------------------
+# LLM Clients
+# ---------------------------------------------------------------------------
+google-generativeai>=0.8.0       # Gemini 2.0 Flash (primary LLM)
+openai>=1.54.0                   # OpenAI (fallback / RAGAS evaluator)
+
+# ---------------------------------------------------------------------------
+# LangChain Ecosystem  (modern v0.3 APIs)
+# ---------------------------------------------------------------------------
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-google-genai>=2.0.0    # ChatGoogleGenerativeAI wrapper
+langchain-openai>=0.2.0          # ChatOpenAI wrapper
+langchain-community>=0.3.0       # BM25Retriever, document loaders
+
+# ---------------------------------------------------------------------------
+# Observability & Tracing
+# ---------------------------------------------------------------------------
+langfuse>=2.36.0,<3.0.0          # @observe() decorator — decorators module removed in v3
+
+# ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
+pydantic-settings>=2.5.0         # Typed settings from .env
+python-dotenv>=1.0.0             # .env file loading
+
+# ---------------------------------------------------------------------------
+# Arabic NLP
+# ---------------------------------------------------------------------------
+pyarabic>=0.6.15                 # Diacritic stripping & Arabic normalisation
+
+# ---------------------------------------------------------------------------
+# Evaluation
+# ---------------------------------------------------------------------------
+ragas>=0.2.0                     # RAGAS metrics: faithfulness, answer_relevancy, context_recall
+datasets>=3.0.0                  # HuggingFace datasets (required by RAGAS)
+
+# ---------------------------------------------------------------------------
+# Chainlit UI
+# ---------------------------------------------------------------------------
+chainlit>=2.0.0                  # Chat interface with settings widgets
+
+# ---------------------------------------------------------------------------
+# Utilities
+# ---------------------------------------------------------------------------
+structlog>=24.4.0                # Structured JSON logging
+tqdm>=4.66.0                     # Progress bars during ingestion
+numpy>=1.26.0                    # Vector arithmetic for RRF fusion
