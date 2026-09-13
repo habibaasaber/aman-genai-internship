@@ -1,0 +1,30 @@
+Jane Smith
+jane.smith@email.com | +1-555-123-4567
+
+SUMMARY
+Senior Backend Engineer with 6 years of experience building scalable APIs and
+distributed systems. Bachelor of Science in Computer Science, State University (2018).
+
+SKILLS
+Python, API Integration, SQL, Docker, React, PostgreSQL, Redis, AWS, Kubernetes,
+FastAPI, Django, Git, CI/CD, Terraform, Linux
+
+EXPERIENCE
+
+Senior Backend Engineer — TechCorp Inc. (2021–Present)
+- Designed and implemented RESTful APIs using Python/FastAPI serving 1M+ requests/day
+- Built Docker-based microservices deployed on Kubernetes
+- Optimised SQL queries reducing database load by 40%
+- Collaborated with frontend teams on React-based dashboards
+- Led API Integration projects connecting 15+ third-party services
+
+Backend Engineer — StartupXYZ (2018–2021)
+- Developed Python Django web applications
+- Created SQL schemas and managed PostgreSQL databases
+- Containerised legacy applications with Docker
+
+EDUCATION
+Bachelor of Science, Computer Science — State University, 2018
+
+CERTIFICATIONS
+AWS Certified Developer – Associate

@@ -1,0 +1,14 @@
+{
+  "title": "Backend Engineer",
+  "description": "We are looking for a Backend Engineer with strong experience in Python, API Integration, SQL, Docker, and React. The candidate must hold a Bachelor's degree and have at least 3 years of professional experience.",
+  "required_skills": [
+    "Python",
+    "API Integration",
+    "SQL",
+    "Docker",
+    "React"
+  ],
+  "knockout_requirements": [
+    "Bachelor"
+  ]
+}

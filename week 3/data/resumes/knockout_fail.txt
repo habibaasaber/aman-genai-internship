@@ -1,0 +1,23 @@
+Chris Morgan
+chris.morgan@email.com | +1-555-444-8888
+
+SUMMARY
+Self-taught backend developer with 5 years of professional experience building
+Python microservices and REST APIs. No formal degree — learned through online
+courses and hands-on work.
+
+SKILLS
+Python, API Integration, SQL, Docker, React, PostgreSQL, Redis, FastAPI,
+Kubernetes, AWS, Git, CI/CD, Linux
+
+EXPERIENCE
+
+Backend Engineer — FreelanceWork (2019–Present)
+- Delivered Python FastAPI-based API Integration projects for 20+ clients
+- Built and deployed Docker containers on AWS
+- Designed SQL data models and wrote optimised queries
+- Developed React dashboards for client-facing applications
+
+EDUCATION
+Self-taught engineer. Completed numerous online certifications in Python, cloud
+computing, and system design. No formal university degree was awarded.

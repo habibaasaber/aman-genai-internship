@@ -1,0 +1,22 @@
+apiVersion: ark.mckinsey.com/v1alpha1
+kind: Team
+metadata:
+  name: ats-team
+  namespace: default
+spec:
+  description: A sequential multi-agent ATS team that evaluates job candidates through
+    two specialized agents. The CV Extraction Agent first converts the candidate's
+    CV into structured information, then the Candidate Evaluation Agent compares the
+    extracted profile against the job description, calculates a match score, identifies
+    strengths and missing requirements, and produces the final hiring recommendation.
+  loops: false
+  members:
+  - name: cv-extraction-agent
+    type: agent
+  - name: candidate-evaluation-agent
+    type: agent
+  selector:
+    enableTerminateTool: true
+    terminatePrompt: If the most recent user message has been given an adequate response,
+      do not return a role. Instead call the terminate tool.
+  strategy: sequential

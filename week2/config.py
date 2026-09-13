@@ -164,7 +164,7 @@ class Settings(BaseSettings):
     # Data                                                                  #
     # ------------------------------------------------------------------ #
     pdf_path: Path = Field(
-        default=Path("data/aman_internship_guide_2026.pdf"),
+        default=Path("data/aman_internship_guide_2026.docx"),
         description="Path to the AMAN Internship Guide PDF (relative to week2/)",
     )
 

@@ -1,0 +1,22 @@
+apiVersion: ark.mckinsey.com/v1alpha1
+kind: Team
+metadata:
+  name: hr-policy-assistant-team
+  namespace: default
+spec:
+  description: A multi-agent HR policy assistant that routes employee questions, retrieves
+    relevant information from the HR knowledge base, and generates grounded responses
+    based on company HR policies.
+  loops: false
+  members:
+  - name: hr-router-agent
+    type: agent
+  - name: hr-policy-retriever-agent
+    type: agent
+  - name: hr-answer-agent
+    type: agent
+  selector:
+    enableTerminateTool: true
+    terminatePrompt: If the most recent user message has been given an adequate response,
+      do not return a role. Instead call the terminate tool.
+  strategy: sequential

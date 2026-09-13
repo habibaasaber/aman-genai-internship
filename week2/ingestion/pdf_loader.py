@@ -17,7 +17,7 @@ Why PyMuPDF (fitz)?
 Public API
 ----------
     from ingestion import load_pdf
-    pages: list[Document] = load_pdf("data/aman_internship_guide_2026.pdf")
+    pages: list[Document] = load_pdf("data/aman_internship_guide_2026.docx")
 """
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-import fitz  # PyMuPDF
+import fitz  # PyMuPDF -- PyPDF2
 from langchain_core.documents import Document
 
 from utils import get_logger, is_arabic
@@ -164,7 +164,7 @@ def load_pdf(pdf_path: str | Path) -> list[Document]:
 
     Examples
     --------
-        pages = load_pdf("data/aman_internship_guide_2026.pdf")
+        pages = load_pdf("data/aman_internship_guide_2026.docx")
         print(f"Loaded {len(pages)} pages")
         print(pages[0].metadata)
     """

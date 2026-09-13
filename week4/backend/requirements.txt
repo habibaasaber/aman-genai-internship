@@ -1,0 +1,25 @@
+# FastAPI + server
+fastapi>=0.115.0
+uvicorn[standard]>=0.31.0
+python-multipart>=0.0.12
+
+# Pydantic
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+
+# LLM clients (LiteLLM provides a unified interface for OpenAI + Gemini)
+litellm>=1.50.0
+openai>=1.51.0
+google-generativeai>=0.8.0
+
+# MCP Python SDK (Model Context Protocol client)
+mcp>=1.0.0
+
+# Observability
+langfuse>=2.55.0
+
+# HTTP client (used for health checks / any outbound HTTP)
+httpx>=0.27.0
+
+# Environment / config
+python-dotenv>=1.0.1

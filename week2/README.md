@@ -14,7 +14,7 @@ week2/
 ├── .env.example                  # Environment variable template
 │
 ├── data/
-│   └── aman_internship_guide_2026.pdf
+│   └── aman_internship_guide_2026.docx
 │
 ├── ingestion/
 │   ├── pdf_loader.py             # PyMuPDF → List[Document] with metadata

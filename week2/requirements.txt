@@ -77,3 +77,4 @@ chainlit>=2.0.0                  # Chat interface with settings widgets
 structlog>=24.4.0                # Structured JSON logging
 tqdm>=4.66.0                     # Progress bars during ingestion
 numpy>=1.26.0                    # Vector arithmetic for RRF fusion
+python-docx

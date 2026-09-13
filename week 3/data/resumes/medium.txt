@@ -1,0 +1,20 @@
+Alex Johnson
+alex.johnson@email.com | +1-555-987-6543
+
+SUMMARY
+Backend Developer with 4 years of experience. Bachelor of Arts in Information
+Technology, City College (2020). Passionate about building web services.
+
+SKILLS
+Python, SQL, Docker, JavaScript, Node.js, MongoDB, Git, Linux, REST APIs
+
+EXPERIENCE
+
+Backend Developer — WebSolutions Ltd. (2020–Present)
+- Built Python Flask REST APIs for e-commerce platforms
+- Managed SQL databases (MySQL) and wrote complex queries
+- Containerised applications using Docker
+- Worked on some minor JavaScript/Node.js scripts for automation
+
+EDUCATION
+Bachelor of Arts, Information Technology — City College, 2020

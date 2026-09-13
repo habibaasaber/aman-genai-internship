@@ -37,7 +37,7 @@ from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from config import settings
-from utils import get_logger, is_arabic, normalise_arabic
+from utils import get_logger, is_arabic, normalise_arabic, pii_masking_service
 
 log = get_logger(__name__)
 
@@ -190,6 +190,8 @@ def fixed_size_chunks(
             text = raw_chunk.strip()
             if not text:
                 continue
+                
+            text = pii_masking_service.sanitize_text(text)
 
             lang = "ar" if is_arabic(text) else "en"
 
@@ -442,6 +444,8 @@ def smart_chunks(
                 piece = piece.strip()
                 if not piece:
                     continue
+                    
+                piece = pii_masking_service.sanitize_text(piece)
 
                 lang = "ar" if is_arabic(piece) else "en"
                 # Normalise Arabic content for BM25 indexing in the metadata.

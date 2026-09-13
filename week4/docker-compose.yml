@@ -1,0 +1,72 @@
+# docker-compose.yml — GitHub MCP Chatbot
+#
+# Starts the full system with a single command: docker compose up
+#
+# Services:
+#   backend   FastAPI API + AI agent + MCP client (port 8001)
+#   chainlit  Chainlit UI (port 8000)
+#
+# Usage:
+#   1. cp .env.example .env && fill in all values
+#   2. docker compose up --build
+#   3. Open http://localhost:8000
+#
+# To simulate LLM fallback (Demo Scenario 3):
+#   OPENAI_API_KEY=invalid docker compose up
+
+version: "3.9"
+
+services:
+  # ------------------------------------------------------------------ #
+  # FastAPI Backend
+  # ------------------------------------------------------------------ #
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: github_mcp_backend
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    environment:
+      # Override BACKEND_HOST/PORT for clarity (already defaults in config.py).
+      BACKEND_HOST: "0.0.0.0"
+      BACKEND_PORT: "8001"
+      # Tell backend to allow calls from the Chainlit container.
+      ALLOWED_ORIGINS: "http://localhost:8000,http://chainlit:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s   # Give time for npx MCP server startup.
+    networks:
+      - chatbot_net
+
+  # ------------------------------------------------------------------ #
+  # Chainlit Frontend
+  # ------------------------------------------------------------------ #
+  chainlit:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: github_mcp_chainlit
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      # Point Chainlit at the backend service.
+      BACKEND_URL: "http://backend:8001"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - chatbot_net
+
+networks:
+  chatbot_net:
+    driver: bridge
